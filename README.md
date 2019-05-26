@@ -5,3 +5,7 @@
 
 # Note
 A prototype to write a test package which can communicate with `flutter-driver` via HTTP request
+
+
+# TODO
+- check if we do not re-build the app under test
