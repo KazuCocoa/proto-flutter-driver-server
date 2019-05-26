@@ -6,7 +6,9 @@ class AppiumDriver {
   FlutterDriver flutterDriver;
   HttpServer server;
 
-  // Should make it map
+  // The AppiumDriver must handle multiple Element.
+  // the hash? should be used for element_id as the return value.
+  //
   Element element;
 
   Future<void> start() async {
@@ -16,21 +18,30 @@ class AppiumDriver {
     await for (var request in server) {
       if (request.uri.toString() == '/hub/wd/element') {
         // dummy
-        element = Element(flutterDriver, find.text('You have pushed the button this many times:'));
-        await flutterDriver.tap(element.finder);
-
+        element = findElementByText('You have pushed the button this many times:');
         returnResponse(request.response, '{"value": true}');
       } else if (request.uri.toString() == '/hub/wd/element/button') {
         // dummy
-        element = Element(flutterDriver, find.bySemanticsLabel('add the number'));
-        await flutterDriver.tap(element.finder);
-
+        element = findElementByAccessibilityId('add the number');
         returnResponse(request.response, '{"value": true}');
       } else if (request.uri.toString() == '/hub/wd/element/text') {
         // dummy
         var text = element != null ? await element.text() : '';
 
-        returnResponse(request.response, '{"value": $text}');
+        returnResponse(request.response, '{"value": "$text"}');
+      } else if (request.uri.toString() == '/hub/wd/element/semanticId') {
+        // dummy
+        var text = element != null ? await element.semanticId() : '';
+
+        returnResponse(request.response, '{"value": "$text"}');
+      } else if (request.uri.toString() == '/hub/wd/element/click') {
+        // dummy
+        if (element.finder != null) {
+          await flutterDriver.tap(element.finder);
+          returnResponse(request.response, '{"value": true}');
+        } else {
+          returnResponse(request.response, '{"value": false}');
+        }
       } else if (request.uri.toString() == '/hub/wd/source') {
         var renderTree = await flutterDriver.getRenderTree();
         returnResponse(request.response,
@@ -68,6 +79,14 @@ class AppiumDriver {
       await flutterDriver.close();
     }
   }
+
+  Element findElementByText(String text) {
+    return Element(flutterDriver, find.text(text));
+  }
+
+  Element findElementByAccessibilityId(String text) {
+    return Element(flutterDriver, find.bySemanticsLabel(text));
+  }
 }
 
 class Element {
@@ -84,5 +103,12 @@ class Element {
       return await driver.getText(finder);
     }
     return '';
+  }
+
+  Future<int> semanticId() async {
+    if (driver != null && finder != null) {
+      return await driver.getSemanticsId(finder);
+    }
+    return -1;
   }
 }

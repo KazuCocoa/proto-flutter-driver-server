@@ -3,9 +3,11 @@
 - `$ flutter driver --target=test_driver/app.dart`
 - Access to:
     - `localhost:8080/hub/wd/element`: find an element by text `You have pushed the button this many times:`
-    - `localhost:8080/hub/wd/button`: Tap a button named `add the number`
+    - `localhost:8080/hub/wd/element/button`: find a button named `add the number`
     - `localhost:8080/hub/wd/element/text`: Get the element text
         - After `localhost:8080/hub/wd/element`, it returns text `You have pushed the button this many times:`
+    - `localhost:8080/hub/wd/element/semanticId`: Get the semantics node id for the object returned by `finder`, or the nearest ancestor with a semantics node
+    - `localhost:8080/hub/wd/element/click`: find a button named `add the number`
     - `localhost:8080/hub/wd/source`: Show the result of render tree
 
 
@@ -18,7 +20,7 @@ which will be a bridge between Appium and Flutter driver.
 
 # gif
 
-![](https://user-images.githubusercontent.com/5511591/58378489-b6013100-7fcf-11e9-9799-cff2e9ec4d89.gif)
+![](https://user-images.githubusercontent.com/5511591/58382819-f54c7380-8009-11e9-8d3b-9bef3dcbfc18.gif)
 
 # notes
 

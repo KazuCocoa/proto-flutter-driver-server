@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 import 'appium_driver.dart';
 
 void main() {
-  group('ensure text test', () {
+  group('run server', () {
     Timeout defaultTimeout = Timeout.parse('2m');
     AppiumDriver driver;
 
@@ -14,6 +14,7 @@ void main() {
     });
 
     test('running server', () async {
+      // maybe, here is necessary part...
       AppiumDriver driver = AppiumDriver();
       await driver.start();
 
