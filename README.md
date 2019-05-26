@@ -1,7 +1,9 @@
 # proto_flutter_driver_server
 
 - `$ flutter driver --target=test_driver/app.dart`
-- Access to `localhost:8080/hub/wd`
+- Access to:
+    - `localhost:8080/hub/wd/tap`: Tap +  button
+    - `localhost:8080/hub/wd/source`: Show the result of render tree
 
 # Note
 A prototype to write a test package which can communicate with `flutter-driver` via HTTP request
