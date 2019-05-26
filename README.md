@@ -6,9 +6,9 @@
 # Note
 A prototype to write a test package which can communicate with `flutter-driver` via HTTP request
 
-
-# TODO
-- check if we do not re-build the app under test
+Calling `app.main();` to show Flutter UIs is necessary. We could not connect to the VM without `test_driver/app.dart`.
+Maybe, we should build a library to call it in `app_test.dart` as a appium-driver server
+which will be a bridge between Appium and Flutter driver.
 
 # gif
 
