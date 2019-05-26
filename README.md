@@ -11,6 +11,14 @@
     - `localhost:8080/hub/wd/source`: Show the result of render tree
 
 
+# Structure
+- https://github.com/KazuCocoa/proto-flutter-driver-server/blob/master/test_driver/app.dart
+    - Calls `main` in Flutter
+- https://github.com/KazuCocoa/proto-flutter-driver-server/blob/master/test_driver/app_test.dart
+    - Pass dart driver to Appium Driver server
+- https://github.com/KazuCocoa/proto-flutter-driver-server/blob/master/test_driver/appium_driver.dart
+    - HttpServer to handle http request and handle Flutter stuff via flutter_driver
+
 # Note
 A prototype to write a test package which can communicate with `flutter-driver` via HTTP request
 
