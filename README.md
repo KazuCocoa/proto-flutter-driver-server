@@ -2,8 +2,12 @@
 
 - `$ flutter driver --target=test_driver/app.dart`
 - Access to:
-    - `localhost:8080/hub/wd/tap`: Tap +  button
+    - `localhost:8080/hub/wd/element`: find an element by text `You have pushed the button this many times:`
+    - `localhost:8080/hub/wd/button`: Tap a button named `add the number`
+    - `localhost:8080/hub/wd/element/text`: Get the element text
+        - After `localhost:8080/hub/wd/element`, it returns text `You have pushed the button this many times:`
     - `localhost:8080/hub/wd/source`: Show the result of render tree
+
 
 # Note
 A prototype to write a test package which can communicate with `flutter-driver` via HTTP request

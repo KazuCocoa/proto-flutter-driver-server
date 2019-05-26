@@ -6,18 +6,33 @@ class AppiumDriver {
   FlutterDriver flutterDriver;
   HttpServer server;
 
+  // Should make it map
+  Element element;
+
   Future<void> start() async {
     server = await _setupServer();
     await _setupFlutter();
 
     await for (var request in server) {
-      if (request.uri.toString() == '/hub/wd/tap') {
-        SerializableFinder add = find.bySemanticsLabel('add the number');
-        await flutterDriver.tap(add);
+      if (request.uri.toString() == '/hub/wd/element') {
+        // dummy
+        element = Element(flutterDriver, find.text('You have pushed the button this many times:'));
+        await flutterDriver.tap(element.finder);
 
         returnResponse(request.response, '{"value": true}');
+      } else if (request.uri.toString() == '/hub/wd/element/button') {
+        // dummy
+        element = Element(flutterDriver, find.bySemanticsLabel('add the number'));
+        await flutterDriver.tap(element.finder);
+
+        returnResponse(request.response, '{"value": true}');
+      } else if (request.uri.toString() == '/hub/wd/element/text') {
+        // dummy
+        var text = element != null ? await element.text() : '';
+
+        returnResponse(request.response, '{"value": $text}');
       } else if (request.uri.toString() == '/hub/wd/source') {
-        RenderTree renderTree = await flutterDriver.getRenderTree();
+        var renderTree = await flutterDriver.getRenderTree();
         returnResponse(request.response,
             '{"value": ${renderTree.toJson()}');
       } else {
@@ -31,7 +46,7 @@ class AppiumDriver {
   /// Returns a response to the response
   void returnResponse(HttpResponse response, String message) {
     response.headers.contentType
-    = new ContentType('application', 'json', charset: 'utf-8');
+      = new ContentType('application', 'json', charset: 'utf-8');
 
     response.write(message);
     response.close();
@@ -52,5 +67,22 @@ class AppiumDriver {
     if (flutterDriver != null) {
       await flutterDriver.close();
     }
+  }
+}
+
+class Element {
+  SerializableFinder finder;
+  FlutterDriver driver;
+
+  Element(FlutterDriver driver, SerializableFinder finder) {
+    this.driver = driver;
+    this.finder = finder;
+  }
+
+  Future<String> text() async {
+    if (driver != null && finder != null) {
+      return await driver.getText(finder);
+    }
+    return '';
   }
 }
