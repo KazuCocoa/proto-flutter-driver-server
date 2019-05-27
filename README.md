@@ -19,6 +19,20 @@
 - https://github.com/KazuCocoa/proto-flutter-driver-server/blob/master/test_driver/appium_driver.dart
     - HttpServer to handle http request and handle Flutter stuff via flutter_driver
 
+# Semantics
+Flutter provides [Semantics class](https://api.flutter.dev/flutter/widgets/Semantics-class.html).
+We can set it like below. Then, we can find the element via `driver.bySemanticsLabel('label')`.
+It is not accessibility identifier, but the feature is for accessibility tool. So, like a content-description or accessibility label.
+
+```dart
+  floatingActionButton: FloatingActionButton(
+    onPressed: _incrementCounter,
+    tooltip: 'Increment',
+    // semanticLabel is used by accessibility model
+    child: Icon(Icons.add, semanticLabel: 'add the number'),
+  )
+```
+
 # Note
 A prototype to write a test package which can communicate with `flutter-driver` via HTTP request
 
@@ -34,3 +48,15 @@ which will be a bridge between Appium and Flutter driver.
 
 - Flutter driver try to communicate with DartVM via VMServiceClient which is implemented by https://github.com/dart-lang/vm_service_client
 - The communication protocol between Dart VM and Flutter is https://github.com/dart-lang/json_rpc_2, https://github.com/dart-lang/json_rpc_2/blob/6c1aa294ae082343a6bcdae5778ce04e1f4c1e3a/lib/src/peer.dart#L20
+
+----
+
+# interesting issues
+Flutter team is working to make Espresso/EarlGrey accessible to Flutter semantics.
+If their works well, maybe Appium also can work perfectly without Flutter Driver <=> Appium.
+
+
+- Support espresso/EarlGrey integration tests on engine PRs
+    - https://github.com/flutter/flutter/issues/32987
+- https://github.com/google/EarlGrey/issues/778#issuecomment-447619132
+- https://github.com/flutter/flutter/issues/32062

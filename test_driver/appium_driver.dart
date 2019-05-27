@@ -44,8 +44,7 @@ class AppiumDriver {
         }
       } else if (request.uri.toString() == '/hub/wd/source') {
         var renderTree = await flutterDriver.getRenderTree();
-        returnResponse(request.response,
-            '{"value": ${renderTree.toJson()}');
+        returnResponse(request.response, renderTree.tree);
       } else {
         returnResponse(request.response, '{"value": false,'
             '"error": "No matched value",'
