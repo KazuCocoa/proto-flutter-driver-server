@@ -40,6 +40,8 @@ Calling `app.main();` to show Flutter UIs is necessary. We could not connect to 
 Maybe, we should build a library to call it in `app_test.dart` as a appium-driver server
 which will be a bridge between Appium and Flutter driver.
 
+https://kazucocoa.wordpress.com/2019/05/27/appiumfluttercalls-flutter-driver-via-httprequests/
+
 # gif
 
 ![](https://user-images.githubusercontent.com/5511591/58382819-f54c7380-8009-11e9-8d3b-9bef3dcbfc18.gif)
