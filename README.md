@@ -1,5 +1,6 @@
 # proto_flutter_driver_server
 
+## features
 - `$ flutter driver --target=test_driver/app.dart`
 - Access to:
     - `localhost:8080/hub/wd/element`: find an element by text `You have pushed the button this many times:`
@@ -10,6 +11,14 @@
     - `localhost:8080/hub/wd/element/click`: find a button named `add the number`
     - `localhost:8080/hub/wd/source`: Show the result of render tree
 
+## Why
+
+This repository aimed to PoC for extending current Appium UIA2 driver to flutter one.
+Appium can handle flutter elements via flutter_driver in addition to normal UIA2/Espresso or XCUITest driver via your favorite programming language if this works.
+
+To make functional tests stable, using vanilla Espresso/XCUITest/flutter_driver is better handling their test target's internal state. It is kindly grey-box style, but they should specialise their platform.
+
+We should change programming languages to implement test scenarios for them. I would like to make less change in this kind of scenario layer, ideally. So, I believe it is great if we have a layer to adapt for test scenarios and for each platform layer.
 
 # Structure
 - https://github.com/KazuCocoa/proto-flutter-driver-server/blob/master/test_driver/app.dart
