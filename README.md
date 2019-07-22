@@ -11,6 +11,10 @@
     - `localhost:8080/hub/wd/element/click`: find a button named `add the number`
     - `localhost:8080/hub/wd/source`: Show the result of render tree
 
+
+This method can work for real devices, iOS and Android, if they were connected to the host machine.
+e.g. [iOS case](https://github.com/KazuCocoa/proto-flutter-driver-server/issues/1)
+
 ## Why
 
 This repository aimed to PoC for extending current Appium UIA2 driver to flutter one.
