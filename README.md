@@ -57,8 +57,13 @@ https://kazucocoa.wordpress.com/2019/05/27/appiumfluttercalls-flutter-driver-via
 
 # notes
 
-- Flutter driver try to communicate with DartVM via VMServiceClient which is implemented by https://github.com/dart-lang/vm_service_client
+- Flutter driver communicates with DartVM via VMServiceClient which is implemented by https://github.com/dart-lang/vm_service_client
+    - protocol: https://github.com/dart-lang/sdk/blob/master/runtime/vm/service/service.md
 - The communication protocol between Dart VM and Flutter is https://github.com/dart-lang/json_rpc_2, https://github.com/dart-lang/json_rpc_2/blob/6c1aa294ae082343a6bcdae5778ce04e1f4c1e3a/lib/src/peer.dart#L20
+
+I wondered which was better to handle elements via flutter_driver or via direct communication with DartVM with web-socket.
+`flutter_driver` has knowledge about Flutter, so we can rely on the driver about Flutter stuff while it increase communication flow though.
+
 
 ----
 
