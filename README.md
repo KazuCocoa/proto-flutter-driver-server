@@ -9,7 +9,8 @@
     - `localhost:8080/hub/wd/element/semanticId`: Get the semantics node id for the object returned by `finder`, or the nearest ancestor with a semantics node
     - `localhost:8080/hub/wd/element/click`: find a button named `add the number`
     - `localhost:8080/hub/wd/source`: Show the result of render tree
-
+    - `localhost:8080/hub/wd/screenshot`: Take a screenshot on the screen. It is saved on the root directory of this project. The screenshot is dart VM view.
+        <img src="https://user-images.githubusercontent.com/5511591/61727173-d40bc780-adad-11e9-89f2-b09235253283.png" with=300>
 
 # Structure
 - https://github.com/KazuCocoa/proto-flutter-driver-server/blob/master/test_driver/app.dart

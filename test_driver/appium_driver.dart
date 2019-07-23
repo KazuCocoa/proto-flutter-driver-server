@@ -45,6 +45,11 @@ class AppiumDriver {
       } else if (request.uri.toString() == '/hub/wd/source') {
         var renderTree = await flutterDriver.getRenderTree();
         returnResponse(request.response, renderTree.tree);
+      } else if (request.uri.toString() == '/hub/wd/screenshot') {
+        var data = await flutterDriver.screenshot();
+        var screenshot = new File('screenshot.png');
+        await screenshot.writeAsBytes(data);
+        returnResponse(request.response, '{"value": "screenshot.png"}');
       } else {
         returnResponse(request.response, '{"value": false,'
             '"error": "No matched value",'
