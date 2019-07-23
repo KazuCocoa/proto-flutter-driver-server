@@ -11,7 +11,7 @@
     - `localhost:8080/hub/wd/element/click`: find a button named `add the number`
     - `localhost:8080/hub/wd/source`: Show the result of render tree
     - `localhost:8080/hub/wd/screenshot`: Take a screenshot on the screen. It is saved on the root directory of this project. The screenshot is dart VM view.
-        <img src="https://user-images.githubusercontent.com/5511591/61727173-d40bc780-adad-11e9-89f2-b09235253283.png" with=100>
+    <img src="https://user-images.githubusercontent.com/5511591/61727173-d40bc780-adad-11e9-89f2-b09235253283.png" width=200>
 
 This method can work for real devices, iOS and Android, if they were connected to the host machine.
 e.g. [iOS case](https://github.com/KazuCocoa/proto-flutter-driver-server/issues/1)
