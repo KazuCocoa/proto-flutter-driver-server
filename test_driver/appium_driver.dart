@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:convert';
 
 import 'package:flutter_driver/flutter_driver.dart';
 
@@ -16,40 +17,43 @@ class AppiumDriver {
     await _setupFlutter();
 
     await for (var request in server) {
-      if (request.uri.toString() == '/hub/wd/element') {
+      final path = request.uri.toString();
+
+      if (path == '/hub/wd/element') {
         // dummy
         element = findElementByText('You have pushed the button this many times:');
-        returnResponse(request.response, '{"value": true}');
-      } else if (request.uri.toString() == '/hub/wd/element/button') {
+        returnResponse(request.response, json.encode({'value': true}));
+      } else if (path == '/hub/wd/element/button') {
         // dummy
         element = findElementByAccessibilityId('add the number');
-        returnResponse(request.response, '{"value": true}');
-      } else if (request.uri.toString() == '/hub/wd/element/text') {
+        returnResponse(request.response, json.encode({'value': true}));
+      } else if (path == '/hub/wd/element/text') {
         // dummy
         var text = element != null ? await element.text() : '';
 
-        returnResponse(request.response, '{"value": "$text"}');
-      } else if (request.uri.toString() == '/hub/wd/element/semanticId') {
+
+        returnResponse(request.response, json.encode({'value': text}));
+      } else if (path == '/hub/wd/element/semanticId') {
         // dummy
         var text = element != null ? await element.semanticId() : '';
 
-        returnResponse(request.response, '{"value": "$text"}');
-      } else if (request.uri.toString() == '/hub/wd/element/click') {
+        returnResponse(request.response, json.encode({'value': text}));
+      } else if (path == '/hub/wd/element/click') {
         // dummy
         if (element.finder != null) {
           await flutterDriver.tap(element.finder);
-          returnResponse(request.response, '{"value": true}');
+          returnResponse(request.response, json.encode({'value': true}));
         } else {
-          returnResponse(request.response, '{"value": false}');
+          returnResponse(request.response, json.encode({'value': false}));
         }
-      } else if (request.uri.toString() == '/hub/wd/source') {
+      } else if (path == '/hub/wd/source') {
         var renderTree = await flutterDriver.getRenderTree();
         returnResponse(request.response, renderTree.tree);
-      } else if (request.uri.toString() == '/hub/wd/screenshot') {
+      } else if (path == '/hub/wd/screenshot') {
         var data = await flutterDriver.screenshot();
         var screenshot = new File('screenshot.png');
         await screenshot.writeAsBytes(data);
-        returnResponse(request.response, '{"value": "screenshot.png"}');
+        returnResponse(request.response, json.encode({'value': 'screenshot.png'}));
       } else {
         returnResponse(request.response, '{"value": false,'
             '"error": "No matched value",'

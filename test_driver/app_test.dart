@@ -4,7 +4,7 @@ import 'appium_driver.dart';
 
 void main() {
   group('run server', () {
-    Timeout defaultTimeout = Timeout.parse('2m');
+    Timeout defaultTimeout = Timeout.parse('5m');
     AppiumDriver driver;
 
     tearDown(() async {
