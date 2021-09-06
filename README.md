@@ -1,3 +1,8 @@
+**This project is no longer maintained.**
+
+**Please refer to https://github.com/appium-userland/appium-flutter-driver.**
+
+
 # proto_flutter_driver_server
 
 ## features
